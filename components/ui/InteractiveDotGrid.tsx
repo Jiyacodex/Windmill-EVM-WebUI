@@ -177,9 +177,13 @@ export default function InteractiveDotGrid({
           alpha = 0.22 + ratio * 0.45; // Darker/more prominent when hovered
         }
 
+        // Dynamic theme detection for crisp dots in both Light and Dark modes
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        const colorRGB = isDarkMode ? '255, 255, 255' : '15, 15, 15';
+
         ctx.beginPath();
         ctx.arc(dot.currentX, dot.currentY, currentDotRadius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(15, 15, 15, ${alpha})`;
+        ctx.fillStyle = `rgba(${colorRGB}, ${alpha})`;
         ctx.fill();
       }
 
