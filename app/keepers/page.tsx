@@ -476,13 +476,10 @@ export default function KeepersPage() {
                   <div className="h-8 w-8 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center text-xs font-bold shrink-0">
                     1
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 flex flex-col gap-2">
                     <h4 className="text-sm font-bold text-black dark:text-white">Clone & Install</h4>
                     <CodeBlock
-                      className="mt-2"
-                      code={`git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git
-cd Windmill-EVM-Keeper
-npm ci`}
+                      code={`git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git && cd Windmill-EVM-Keeper && npm ci`}
                     />
                   </div>
                 </div>
@@ -492,14 +489,15 @@ npm ci`}
                   <div className="h-8 w-8 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center text-xs font-bold shrink-0">
                     2
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 flex flex-col gap-3">
                     <h4 className="text-sm font-bold text-black dark:text-white">Configure Environment</h4>
                     <CodeBlock
-                      className="mt-2"
-                      code={`cp .env.example .env
-
-# Edit .env:
-KEEPER_STRATEGY=windmill
+                      label="Copy environment template"
+                      code={`cp .env.example .env`}
+                    />
+                    <CodeBlock
+                      label="Sample .env configuration"
+                      code={`KEEPER_STRATEGY=windmill
 RPC_URL=https://sepolia.base.org
 EXPECTED_CHAIN_ID=84532
 PRIVATE_KEY=<your-keeper-wallet-private-key>
@@ -515,18 +513,19 @@ DRY_RUN=false`}
                   <div className="h-8 w-8 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center text-xs font-bold shrink-0">
                     3
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 flex flex-col gap-3">
                     <h4 className="text-sm font-bold text-black dark:text-white">Run the Keeper</h4>
                     <CodeBlock
-                      className="mt-2"
-                      code={`# Test with dry run first (no transactions)
-npm run start:dry-run
-
-# Single cycle test
-npm run start:once
-
-# Production continuous loop
-npm run start`}
+                      label="1. Dry run test (simulation only, no transactions)"
+                      code={`npm run start:dry-run`}
+                    />
+                    <CodeBlock
+                      label="2. Single cycle test"
+                      code={`npm run start:once`}
+                    />
+                    <CodeBlock
+                      label="3. Production continuous daemon"
+                      code={`npm run start`}
                     />
                   </div>
                 </div>

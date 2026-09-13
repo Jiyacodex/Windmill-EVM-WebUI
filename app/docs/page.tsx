@@ -249,64 +249,57 @@ export default function DocsPage() {
             <div data-reveal className="reveal-fade-up flex flex-col gap-6">
               <h2 className="text-2xl font-extrabold text-black dark:text-white">Deployment Guide</h2>
 
-              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5">
-                <h3 className="text-sm font-bold text-black dark:text-white mb-3">Prerequisites</h3>
+              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5 flex flex-col gap-4">
+                <h3 className="text-sm font-bold text-black dark:text-white">Prerequisites</h3>
                 <CodeBlock
-                  code={`# Install Foundry
-curl -L https://foundry.paradigm.xyz | bash
-foundryup
-
-# Verify
-forge --version
-cast --version
-anvil --version`}
+                  label="1. Install Foundry toolchain"
+                  code={`curl -L https://foundry.paradigm.xyz | bash && foundryup`}
+                />
+                <CodeBlock
+                  label="2. Verify installation"
+                  code={`forge --version && cast --version && anvil --version`}
                 />
               </div>
 
-              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5">
-                <h3 className="text-sm font-bold text-black dark:text-white mb-3">Environment Setup</h3>
+              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5 flex flex-col gap-4">
+                <h3 className="text-sm font-bold text-black dark:text-white">Environment Setup</h3>
                 <CodeBlock
-                  code={`cp .env.example .env
-
-# Edit .env:
-PRIVATE_KEY=0x...          # Deployer wallet private key
+                  label="Initialize environment file"
+                  code={`cp .env.example .env`}
+                />
+                <CodeBlock
+                  label="Required environment variables"
+                  code={`PRIVATE_KEY=0x...          # Deployer wallet private key
 ETHERSCAN_API_KEY=...      # For contract verification
 WETH_ADDRESS=0xC02a...     # Chain-specific WETH address`}
                 />
               </div>
 
-              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5">
-                <h3 className="text-sm font-bold text-black dark:text-white mb-3">Deploy to Testnet</h3>
+              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5 flex flex-col gap-4">
+                <h3 className="text-sm font-bold text-black dark:text-white">Deploy to Testnet</h3>
                 <CodeBlock
-                  code={`# Deploy to Sepolia
-forge script script/DeployWindmill.s.sol \\
-  --rpc-url sepolia \\
-  --broadcast \\
-  --verify \\
-  -vvvv
-
-# Deploy to Mordor (ETC testnet)
-forge script script/DeployWindmill.s.sol \\
-  --rpc-url mordor \\
-  --broadcast \\
-  -vvvv`}
+                  label="Sepolia Testnet"
+                  code={`forge script script/DeployWindmill.s.sol --rpc-url sepolia --broadcast --verify -vvvv`}
+                />
+                <CodeBlock
+                  label="Mordor (ETC Testnet)"
+                  code={`forge script script/DeployWindmill.s.sol --rpc-url mordor --broadcast -vvvv`}
                 />
               </div>
 
-              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5">
-                <h3 className="text-sm font-bold text-black dark:text-white mb-3">Deploy to Mainnet</h3>
+              <div className="border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5 flex flex-col gap-4">
+                <h3 className="text-sm font-bold text-black dark:text-white">Deploy to Mainnet</h3>
                 <CodeBlock
-                  code={`# Ethereum Mainnet
-forge script script/DeployWindmill.s.sol \\
-  --rpc-url ethereum --broadcast --verify -vvvv
-
-# Base
-forge script script/DeployWindmill.s.sol \\
-  --rpc-url base --broadcast --verify -vvvv
-
-# Polygon
-forge script script/DeployWindmill.s.sol \\
-  --rpc-url polygon --broadcast --verify -vvvv`}
+                  label="Ethereum Mainnet"
+                  code={`forge script script/DeployWindmill.s.sol --rpc-url ethereum --broadcast --verify -vvvv`}
+                />
+                <CodeBlock
+                  label="Base Mainnet"
+                  code={`forge script script/DeployWindmill.s.sol --rpc-url base --broadcast --verify -vvvv`}
+                />
+                <CodeBlock
+                  label="Polygon Mainnet"
+                  code={`forge script script/DeployWindmill.s.sol --rpc-url polygon --broadcast --verify -vvvv`}
                 />
               </div>
 
