@@ -31,12 +31,7 @@ const FAQ_ITEMS: FAQItem[] = [
   },
 ];
 
-interface FAQContentProps {
-  theme?: 'light' | 'dark';
-}
-
-export default function FAQContent({ theme }: FAQContentProps) {
-  void theme;
+export default function FAQContent() {
   // Initialize with first question open by default for clear UX
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
