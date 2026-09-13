@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -22,8 +22,33 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [networkDropdownOpen, setNetworkDropdownOpen] = useState(false);
+  const networkDropdownRef = useRef<HTMLDivElement>(null);
 
   const networks = ['Localhost', 'Sepolia', 'Ethereum', 'Base', 'Polygon', 'BSC', 'ETC'];
+
+  useEffect(() => {
+    if (!networkDropdownOpen) return;
+
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (!networkDropdownRef.current?.contains(event.target as Node)) {
+        setNetworkDropdownOpen(false);
+      }
+    };
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setNetworkDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [networkDropdownOpen]);
 
   const navItems = [
     { name: 'Home', link: '/' },
@@ -65,7 +90,7 @@ export default function Navbar() {
             {isConnected ? (
               <div className="flex items-center gap-2">
                 {/* Network select indicator */}
-                <div className="relative">
+                <div className="relative" ref={networkDropdownRef}>
                   <button
                     type="button"
                     onClick={() => setNetworkDropdownOpen(!networkDropdownOpen)}
