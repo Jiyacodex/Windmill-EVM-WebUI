@@ -5,6 +5,7 @@ import WalletModal from '@/components/wallet/WalletModal';
 import { useScrollRevealChildren } from '@/hooks/useScrollReveal';
 import { useContract } from '@/hooks/useContract';
 import { Monitor, Activity, Zap, CheckCircle2, Percent, Fuel, Search, RefreshCw, Play, Square, Terminal, Loader2 } from 'lucide-react';
+import CodeBlock from '@/components/ui/CodeBlock';
 
 // ── Keeper Bot Panel (local process control) ────────────────────────────
 function KeeperBotPanel() {
@@ -477,11 +478,12 @@ export default function KeepersPage() {
                   </div>
                   <div className="flex-1">
                     <h4 className="text-sm font-bold text-black dark:text-white">Clone & Install</h4>
-                    <div className="bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-100 dark:border-neutral-700 rounded-xl p-4 font-mono text-xs text-black dark:text-white mt-2 overflow-x-auto">
-                      <pre className="whitespace-pre">{`git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git
+                    <CodeBlock
+                      className="mt-2"
+                      code={`git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git
 cd Windmill-EVM-Keeper
-npm ci`}</pre>
-                    </div>
+npm ci`}
+                    />
                   </div>
                 </div>
 
@@ -492,8 +494,9 @@ npm ci`}</pre>
                   </div>
                   <div className="flex-1">
                     <h4 className="text-sm font-bold text-black dark:text-white">Configure Environment</h4>
-                    <div className="bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-100 dark:border-neutral-700 rounded-xl p-4 font-mono text-xs text-black dark:text-white mt-2 overflow-x-auto">
-                      <pre className="whitespace-pre">{`cp .env.example .env
+                    <CodeBlock
+                      className="mt-2"
+                      code={`cp .env.example .env
 
 # Edit .env:
 KEEPER_STRATEGY=windmill
@@ -502,8 +505,8 @@ EXPECTED_CHAIN_ID=84532
 PRIVATE_KEY=<your-keeper-wallet-private-key>
 CONTRACT_ADDRESS=<deployed-windmill-exchange-address>
 KEEPER_INTERVAL_MS=15000
-DRY_RUN=false`}</pre>
-                    </div>
+DRY_RUN=false`}
+                    />
                   </div>
                 </div>
 
@@ -514,16 +517,17 @@ DRY_RUN=false`}</pre>
                   </div>
                   <div className="flex-1">
                     <h4 className="text-sm font-bold text-black dark:text-white">Run the Keeper</h4>
-                    <div className="bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-100 dark:border-neutral-700 rounded-xl p-4 font-mono text-xs text-black dark:text-white mt-2 overflow-x-auto">
-                      <pre className="whitespace-pre">{`# Test with dry run first (no transactions)
+                    <CodeBlock
+                      className="mt-2"
+                      code={`# Test with dry run first (no transactions)
 npm run start:dry-run
 
 # Single cycle test
 npm run start:once
 
 # Production continuous loop
-npm run start`}</pre>
-                    </div>
+npm run start`}
+                    />
                   </div>
                 </div>
               </div>
