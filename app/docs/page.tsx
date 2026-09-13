@@ -253,11 +253,19 @@ export default function DocsPage() {
                 <h3 className="text-sm font-bold text-black dark:text-white">Prerequisites</h3>
                 <CodeBlock
                   label="1. Install Foundry toolchain"
-                  code={`curl -L https://foundry.paradigm.xyz | bash && foundryup`}
+                  platforms={{
+                    macos: `curl -L https://foundry.paradigm.xyz | bash\nfoundryup`,
+                    linux: `curl -L https://foundry.paradigm.xyz | bash\nfoundryup`,
+                    windows: `irm https://foundry.paradigm.xyz/win | iex\nfoundryup`,
+                  }}
                 />
                 <CodeBlock
                   label="2. Verify installation"
-                  code={`forge --version && cast --version && anvil --version`}
+                  platforms={{
+                    macos: `forge --version && cast --version && anvil --version`,
+                    linux: `forge --version && cast --version && anvil --version`,
+                    windows: `forge --version; cast --version; anvil --version`,
+                  }}
                 />
               </div>
 
@@ -265,7 +273,11 @@ export default function DocsPage() {
                 <h3 className="text-sm font-bold text-black dark:text-white">Environment Setup</h3>
                 <CodeBlock
                   label="Initialize environment file"
-                  code={`cp .env.example .env`}
+                  platforms={{
+                    macos: `cp .env.example .env`,
+                    linux: `cp .env.example .env`,
+                    windows: `Copy-Item .env.example .env`,
+                  }}
                 />
                 <CodeBlock
                   label="Required environment variables"

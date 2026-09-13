@@ -479,7 +479,11 @@ export default function KeepersPage() {
                   <div className="flex-1 flex flex-col gap-2">
                     <h4 className="text-sm font-bold text-black dark:text-white">Clone & Install</h4>
                     <CodeBlock
-                      code={`git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git && cd Windmill-EVM-Keeper && npm ci`}
+                      platforms={{
+                        macos: `git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git && cd Windmill-EVM-Keeper && npm ci`,
+                        linux: `git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git && cd Windmill-EVM-Keeper && npm ci`,
+                        windows: `git clone https://github.com/StabilityNexus/Windmill-EVM-Keeper.git; cd Windmill-EVM-Keeper; npm ci`,
+                      }}
                     />
                   </div>
                 </div>
@@ -493,7 +497,11 @@ export default function KeepersPage() {
                     <h4 className="text-sm font-bold text-black dark:text-white">Configure Environment</h4>
                     <CodeBlock
                       label="Copy environment template"
-                      code={`cp .env.example .env`}
+                      platforms={{
+                        macos: `cp .env.example .env`,
+                        linux: `cp .env.example .env`,
+                        windows: `Copy-Item .env.example .env`,
+                      }}
                     />
                     <CodeBlock
                       label="Sample .env configuration"
